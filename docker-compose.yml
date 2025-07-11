@@ -1,0 +1,22 @@
+services:
+  postgres_db:
+    container_name: postgres_db
+    image: postgres
+    restart: always
+    env_file:
+      - env
+    ports:
+      - 8092:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data 
+ 
+
+#---------Volumes-----------
+volumes:
+  pgdata:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: 'postgres_db'
+
