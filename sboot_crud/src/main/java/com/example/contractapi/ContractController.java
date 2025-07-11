@@ -1,5 +1,6 @@
 package com.example.contractapi;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.hateoas.EntityModel;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 @RestController
 class ContractController {
@@ -33,7 +33,12 @@ class ContractController {
   // add new contract
   @PostMapping("/contracts")
   Contract newContract(@RequestBody Contract newContract) {
-    return repository.save(newContract);
+    LocalDate firstDate = newContract.getStartDate();
+    LocalDate secondDate = newContract.getEndDate();
+    if (firstDate.isAfter(secondDate)){
+      return repository.save(newContract);
+    }
+    return newContract;
   }
 
 

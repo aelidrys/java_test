@@ -15,6 +15,6 @@ Documentation OpenAPI : http://localhost:8080/swagger-ui.html
 ## Runing the server
 
 - #### mkdir postgres_db
-- #### run docker compose up -d
+- #### docker compose up -d
 - #### cd sboot_crud
 - #### mvn spring-boot:run

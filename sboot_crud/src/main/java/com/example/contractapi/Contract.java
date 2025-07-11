@@ -2,7 +2,7 @@ package com.example.contractapi;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-
+import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
@@ -14,7 +14,9 @@ import jakarta.persistence.GeneratedValue;
 public class Contract{
     
     private @Id @GeneratedValue Long id;
+    @NotBlank(message = "title is mandatory")
     private String title;
+    @NotBlank(message = "clientName is mandatory")
     private String clientName;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -26,7 +28,7 @@ public class Contract{
         this.startDate = startDate;
         this.endDate = endDate;
     }
-
+    public Contract(){}
     public Contract(String title, String clientName) {
         this.title = title;
         this.clientName = clientName;
